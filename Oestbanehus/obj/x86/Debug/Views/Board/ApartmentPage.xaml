@@ -1,0 +1,111 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="Oestbanehus.Views.ApartmentPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Oestbanehus.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:vm="using:Oestbanehus.ViewModels"
+      mc:Ignorable="d">
+
+  <Page.DataContext>
+    <vm:ApartmentViewModel x:ConnectionId='2' x:Name="ViewModel" />
+  </Page.DataContext>
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <ScrollViewer>
+      <StackPanel ScrollViewer.VerticalScrollMode="Enabled">
+
+    <controls:PageHeader x:ConnectionId='3' x:Name="pageHeader"
+                         RelativePanel.AlignLeftWithPanel="True"
+                         RelativePanel.AlignRightWithPanel="True"
+                         RelativePanel.AlignTopWithPanel="True"
+                         Text="Apartment">
+
+      <!--  secondary commands  -->
+      <controls:PageHeader.SecondaryCommands>
+        <AppBarButton x:ConnectionId='4'                                        
+                      Label="Settings" />
+        <AppBarButton x:ConnectionId='5'                                       
+                      Label="Privacy" />
+        <AppBarButton x:ConnectionId='6'                                     
+                      Label="About" />
+      </controls:PageHeader.SecondaryCommands>
+
+    </controls:PageHeader>
+    <Grid >
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Grid.Column="0"
+                    >
+                    <TextBlock Text="Address:  "  FontSize="20" FontWeight="Bold"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=apartment.Street}" />
+                        <TextBlock Text="{Binding Path=apartment.ApartmentNumber}" Margin="10,0,0,0"/>
+          </StackPanel>
+
+          <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=apartment.ZipCode}" />
+                        <TextBlock Text="{Binding Path=apartment.City}" Margin="10,0,0,0"/>
+          </StackPanel>
+
+          <StackPanel>
+                        <TextBlock Text="Floor: " FontSize="20" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Path=apartment.Floor}" />
+          </StackPanel>
+
+          <StackPanel>
+                        <TextBlock FontSize="20" Text="Size: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding Path=apartment.Size}" />
+          </StackPanel>
+
+          <StackPanel>
+                        <TextBlock FontSize="20" Text="Rooms: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding Path=apartment.NumberOfRooms}" />
+          </StackPanel>
+
+          <StackPanel>
+                        <TextBlock Text="Price: " FontSize="20" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Path=apartment.Price}" />
+          </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="0">
+              <Button Command="{Binding toConditions}">Conditions</Button>
+              <Button Margin="10,0,0,0"
+                      Command="{Binding toRequests}">Requests</Button>
+            </StackPanel>
+          </StackPanel>
+
+        <ListView ItemsSource="{Binding apartment.Residents}" Grid.Column="1" >
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <StackPanel>
+                                <TextBlock Text="Name" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="Email" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Email}" />
+                                <TextBlock Text="Phone Number" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Phone}" />
+                                <TextBlock Text="Movein Date" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding MoveInDate}" />
+                                <TextBlock Text="Moveout Date" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding MoveOutDate}" />
+              </StackPanel>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+         
+          
+        </ListView>
+         
+        </Grid>
+    
+    </StackPanel>
+    </ScrollViewer>
+
+  </Grid>
+</Page>
+

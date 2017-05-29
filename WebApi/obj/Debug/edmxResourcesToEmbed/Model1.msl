@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Oestbanehus4ModelStoreContainer" CdmEntityContainer="Oestbanehus4Entities">
+    <EntitySetMapping Name="Apartments">
+      <EntityTypeMapping TypeName="Oestbanehus4Model.Apartment">
+        <MappingFragment StoreEntitySet="Apartments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="NumberOfRooms" ColumnName="NumberOfRooms" />
+          <ScalarProperty Name="Floor" ColumnName="Floor" />
+          <ScalarProperty Name="ApartmentNumber" ColumnName="ApartmentNumber" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Buildings">
+      <EntityTypeMapping TypeName="Oestbanehus4Model.Building">
+        <MappingFragment StoreEntitySet="Buildings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="Oestbanehus4Model.City">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City1" ColumnName="City" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="Oestbanehus4Model.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ConditionId" ColumnName="ConditionId" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConditionsOfItems">
+      <EntityTypeMapping TypeName="Oestbanehus4Model.ConditionsOfItem">
+        <MappingFragment StoreEntitySet="ConditionsOfItems">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
+          <ScalarProperty Name="ConditionType" ColumnName="ConditionType" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConditionTypes">
+      <EntityTypeMapping TypeName="Oestbanehus4Model.ConditionType">
+        <MappingFragment StoreEntitySet="ConditionTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Persons">
+      <EntityTypeMapping TypeName="Oestbanehus4Model.Person">
+        <MappingFragment StoreEntitySet="Persons">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
+          <ScalarProperty Name="MoveInDate" ColumnName="MoveInDate" />
+          <ScalarProperty Name="MoveOutDate" ColumnName="MoveOutDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requests">
+      <EntityTypeMapping TypeName="Oestbanehus4Model.Request">
+        <MappingFragment StoreEntitySet="Requests">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+          <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,63 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="Oestbanehus.Views.Board.AddCondition"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Oestbanehus.Views.Board"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:Template10.Controls"
+      mc:Ignorable="d"
+      xmlns:vm="using:Oestbanehus.ViewModels">
+  <Page.DataContext>
+    <vm:AddConditionVM x:ConnectionId='2' x:Name="ViewModel" />
+  </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel>
+      <controls:PageHeader x:ConnectionId='3' x:Name="pageHeader"
+                           RelativePanel.AlignLeftWithPanel="True"
+                           RelativePanel.AlignRightWithPanel="True"
+                           RelativePanel.AlignTopWithPanel="True"
+                           Text="Add a condition">
+
+        <!--  secondary commands  -->
+        <controls:PageHeader.SecondaryCommands>
+          <AppBarButton x:ConnectionId='4'                                        
+                        Label="Settings" />
+          <AppBarButton x:ConnectionId='5'                                       
+                        Label="Privacy" />
+          <AppBarButton x:ConnectionId='6'                                     
+                        Label="About" />
+        </controls:PageHeader.SecondaryCommands>
+
+      </controls:PageHeader>
+       <AppBarSeparator Height="8" Width="1" Background="Transparent"/>
+       <TextBlock Text="Condition type" />
+      <ComboBox SelectedIndex="{Binding conditionType, Mode=TwoWay}">
+        <ComboBoxItem>
+          <TextBlock Text="PIPE" />
+        </ComboBoxItem>
+        <ComboBoxItem>
+          <TextBlock Text="MOLD" />
+        </ComboBoxItem>
+         <ComboBoxItem>
+         <TextBlock Text="WINDOW" />
+         </ComboBoxItem>
+         <ComboBoxItem>
+         <TextBlock Text="OTHER" />
+         </ComboBoxItem>
+            </ComboBox>
+          <AppBarSeparator Height="10" Width="1" Background="Transparent"/>
+          <TextBox Text="{Binding description, Mode=TwoWay}"
+               Height="100"
+               Width="300"
+               Header="Description"
+               HorizontalAlignment="Left"
+               />
+        <AppBarSeparator Height="8" Width="1" Background="Transparent"/>
+       <Button Command="{Binding addCondition}">Submit</Button>
+    </StackPanel>
+
+    </Grid>
+</Page>
+

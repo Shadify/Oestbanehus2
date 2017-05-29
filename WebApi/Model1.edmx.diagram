@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6585c1d8c7874b76b1c3657cb9e0382a" Name="Diagram1">
+        <EntityTypeShape EntityType="Oestbanehus4Model.Apartment" Width="1.5" PointX="5.125" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oestbanehus4Model.Building" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oestbanehus4Model.City" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oestbanehus4Model.Comment" Width="1.875" PointX="9.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oestbanehus4Model.ConditionsOfItem" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oestbanehus4Model.ConditionType" Width="1.5" PointX="4.875" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oestbanehus4Model.Person" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oestbanehus4Model.Request" Width="1.5" PointX="9.625" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="Oestbanehus4Model.FK_Apartments_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oestbanehus4Model.FK_ConditionsOfItems_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oestbanehus4Model.FK_Persons_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oestbanehus4Model.FK_Requests_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oestbanehus4Model.FK_Buildings_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oestbanehus4Model.FK_Comments_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oestbanehus4Model.FK_Comments_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="Oestbanehus4Model.FK_ConditionsOfItems_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="Oestbanehus4Model.FK_Requests_ToTable_1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

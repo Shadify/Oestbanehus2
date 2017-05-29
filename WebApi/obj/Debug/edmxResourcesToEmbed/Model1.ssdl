@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Oestbanehus4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Apartments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="BuildingId" Type="int" Nullable="false" />
+    <Property Name="Size" Type="int" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="NumberOfRooms" Type="int" Nullable="false" />
+    <Property Name="Floor" Type="int" Nullable="false" />
+    <Property Name="ApartmentNumber" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Street" Type="nchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Buildings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="Street" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="ZipCode" />
+    </Key>
+    <Property Name="ZipCode" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="City" Type="nchar" MaxLength="58" />
+  </EntityType>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ConditionId" Type="int" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+    <Property Name="Content" Type="varchar(max)" Nullable="false" />
+    <Property Name="PublishedDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConditionsOfItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ApartmentId" Type="int" Nullable="false" />
+    <Property Name="ConditionType" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="Picture" Type="varchar(max)" />
+    <Property Name="Status" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConditionTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Persons">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ApartmentId" Type="int" Nullable="false" />
+    <Property Name="MoveInDate" Type="date" />
+    <Property Name="MoveOutDate" Type="date" />
+    <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="255" />
+    <Property Name="Picture" Type="varchar(max)" Nullable="false" />
+    <Property Name="Type" Type="int" />
+  </EntityType>
+  <EntityType Name="Requests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="AuthorId" Type="int" Nullable="false" />
+    <Property Name="ApartmentId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Picture" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK_Apartments_ToTable">
+    <End Role="Buildings" Type="Self.Buildings" Multiplicity="1" />
+    <End Role="Apartments" Type="Self.Apartments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Buildings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Apartments">
+        <PropertyRef Name="BuildingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Buildings_ToTable">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+    <End Role="Buildings" Type="Self.Buildings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="ZipCode" />
+      </Principal>
+      <Dependent Role="Buildings">
+        <PropertyRef Name="ZipCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comments_ToTable">
+    <End Role="ConditionsOfItems" Type="Self.ConditionsOfItems" Multiplicity="1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConditionsOfItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="ConditionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comments_ToTable_1">
+    <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persons">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConditionsOfItems_ToTable">
+    <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+    <End Role="ConditionsOfItems" Type="Self.ConditionsOfItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ConditionsOfItems">
+        <PropertyRef Name="ApartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConditionsOfItems_ToTable_1">
+    <End Role="ConditionTypes" Type="Self.ConditionTypes" Multiplicity="1" />
+    <End Role="ConditionsOfItems" Type="Self.ConditionsOfItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConditionTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ConditionsOfItems">
+        <PropertyRef Name="ConditionType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Persons_ToTable">
+    <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+    <End Role="Persons" Type="Self.Persons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Persons">
+        <PropertyRef Name="ApartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToTable">
+    <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="ApartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToTable_1">
+    <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persons">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Oestbanehus4ModelStoreContainer">
+    <EntitySet Name="Apartments" EntityType="Self.Apartments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Buildings" EntityType="Self.Buildings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConditionsOfItems" EntityType="Self.ConditionsOfItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConditionTypes" EntityType="Self.ConditionTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Apartments_ToTable" Association="Self.FK_Apartments_ToTable">
+      <End Role="Buildings" EntitySet="Buildings" />
+      <End Role="Apartments" EntitySet="Apartments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Buildings_ToTable" Association="Self.FK_Buildings_ToTable">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Buildings" EntitySet="Buildings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comments_ToTable" Association="Self.FK_Comments_ToTable">
+      <End Role="ConditionsOfItems" EntitySet="ConditionsOfItems" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comments_ToTable_1" Association="Self.FK_Comments_ToTable_1">
+      <End Role="Persons" EntitySet="Persons" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConditionsOfItems_ToTable" Association="Self.FK_ConditionsOfItems_ToTable">
+      <End Role="Apartments" EntitySet="Apartments" />
+      <End Role="ConditionsOfItems" EntitySet="ConditionsOfItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConditionsOfItems_ToTable_1" Association="Self.FK_ConditionsOfItems_ToTable_1">
+      <End Role="ConditionTypes" EntitySet="ConditionTypes" />
+      <End Role="ConditionsOfItems" EntitySet="ConditionsOfItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Persons_ToTable" Association="Self.FK_Persons_ToTable">
+      <End Role="Apartments" EntitySet="Apartments" />
+      <End Role="Persons" EntitySet="Persons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToTable" Association="Self.FK_Requests_ToTable">
+      <End Role="Apartments" EntitySet="Apartments" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToTable_1" Association="Self.FK_Requests_ToTable_1">
+      <End Role="Persons" EntitySet="Persons" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
